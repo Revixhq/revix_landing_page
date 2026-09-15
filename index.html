@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revix: Never stranded. Never overcharged.</title>
+<meta name="description" content="Verified mechanics come to you at a price you see before you book. Roadside rescue and routine servicing. All of Lagos.">
+<meta name="theme-color" content="#111010">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="assets/favicon/site.webmanifest">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Revix: Never stranded. Never overcharged.">
+<meta property="og:description" content="Verified mechanics come to you at a price you see before you book. Roadside rescue and routine servicing.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/favicon/android-chrome-512x512.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Revix: Never stranded. Never overcharged.">
+<meta name="twitter:description" content="Verified mechanics come to you at a price you see before you book.">
+<meta name="twitter:image" content="assets/favicon/android-chrome-512x512.png">
+
+<link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Exposed column rules — brutalist structural honesty, kept to a whisper -->
+<div class="vig" aria-hidden="true"></div>
+<div class="rules" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ICON SPRITE — drawn for Revix.
+     Automotive parts, not a stock UI set. Every glyph is a thing
+     a mechanic actually touches: rotors, tread blocks, cell
+     dividers, louvres, OBD pins. 1.6px stroke on a 24 grid.
+     ═══════════════════════════════════════════════════════════ -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+
+    <!-- Brake disc: vented rotor + caliper bracket -->
+    <symbol id="i-brake" viewBox="0 0 24 24">
+      <circle cx="11" cy="12" r="8.4"/><circle cx="11" cy="12" r="3"/>
+      <path d="M11 4.6v2.2M11 17.2v2.2M3.6 12h2.2M16.2 12h2.2M5.8 6.8l1.5 1.5M14.7 15.7l1.5 1.5M16.2 6.8l-1.5 1.5M7.3 15.7l-1.5 1.5"/>
+      <path d="M19.6 8.2a1.6 1.6 0 0 1 1.6 1.6v4.4a1.6 1.6 0 0 1-1.6 1.6"/>
+    </symbol>
+
+    <!-- Tyre: sidewall + rim + tread blocks -->
+    <symbol id="i-tyre" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.2"/>
+      <path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/>
+    </symbol>
+
+    <!-- Battery: terminals + cell dividers -->
+    <symbol id="i-battery" viewBox="0 0 24 24">
+      <rect x="2.8" y="7.6" width="18.4" height="12.6" rx="1.8"/>
+      <path d="M6.6 7.6V5.4h3.2v2.2M14.2 7.6V5.4h3.2v2.2"/>
+      <path d="M9.6 7.6v12.6M14.4 7.6v12.6"/>
+      <path d="M5 12.6h2.6M17 12.6h2.6M18.3 11.3v2.6"/>
+    </symbol>
+
+    <!-- Oil: droplet + service level -->
+    <symbol id="i-oil" viewBox="0 0 24 24">
+      <path d="M12 3.2s6 6.3 6 10a6 6 0 0 1-12 0c0-3.7 6-10 6-10Z"/>
+      <path d="M7.4 14.4h9.2"/><path d="M9.6 17.2h4.8"/>
+    </symbol>
+
+    <!-- Engine block: head, cylinders, drive pulley -->
+    <symbol id="i-engine" viewBox="0 0 24 24">
+      <path d="M3.4 11.2h2.2V8.4h5.6v2.8h3.4l2.6-2.4h3.4v9.6h-3.4l-2.6-2.4H5.6v2.8H3.4Z"/>
+      <path d="M8.4 8.4V6.2h4.4M18.4 11.4v3.2"/>
+    </symbol>
+
+    <!-- AC: louvre slats + air curl -->
+    <symbol id="i-ac" viewBox="0 0 24 24">
+      <rect x="2.8" y="5" width="18.4" height="10.6" rx="1.8"/>
+      <path d="M6.2 8.2h11.6M6.2 11h11.6M6.2 13.8h7"/>
+      <path d="M8 18.4c1.4 1.8 3 1.8 4.4 0s3-1.8 4.4 0"/>
+    </symbol>
+
+    <!-- Jump start: clamp jaws + current arc (no lightning bolt) -->
+    <symbol id="i-jump" viewBox="0 0 24 24">
+      <path d="M4.4 6.2v5.4a2.6 2.6 0 0 0 2.6 2.6h1.2v5.6"/>
+      <path d="M2.6 4.4h3.6M19.6 6.2v5.4a2.6 2.6 0 0 1-2.6 2.6h-1.2v5.6"/>
+      <path d="M17.8 4.4h3.6"/>
+      <path d="M10.4 9.6c1.6 0 1.6 2.8 3.2 2.8"/>
+    </symbol>
+
+    <!-- Fuel: pump body + hose + nozzle -->
+    <symbol id="i-fuel" viewBox="0 0 24 24">
+      <path d="M4 20.4V5.2a1.8 1.8 0 0 1 1.8-1.8h5.6a1.8 1.8 0 0 1 1.8 1.8v15.2"/>
+      <path d="M2.6 20.4h12M6.2 7h6.6v3.6H6.2z"/>
+      <path d="M13.2 9.4h3.4a1.8 1.8 0 0 1 1.8 1.8v5.2a1.6 1.6 0 0 0 3.2 0V8l-2.4-2.6"/>
+    </symbol>
+
+    <!-- Diagnostic: OBD connector + trace -->
+    <symbol id="i-diag" viewBox="0 0 24 24">
+      <path d="M4.6 5.4h14.8l-1.6 4.4H6.2Z"/>
+      <path d="M7.6 7.2h.02M10.4 7.2h.02M13.2 7.2h.02M16 7.2h.02"/>
+      <path d="M2.6 16.6h4l1.8-3.4 2.4 6 2.2-4.2 1.4 1.6h6.8"/>
+    </symbol>
+
+    <!-- Temperature: dial with needle (not a thermometer) -->
+    <symbol id="i-heat" viewBox="0 0 24 24">
+      <path d="M4 16.2a8.6 8.6 0 1 1 16 0"/>
+      <path d="M12 16.2 16.4 9.8"/><circle cx="12" cy="16.4" r="1.4"/>
+      <path d="M4.6 12.4H6M18 12.4h1.4M12 6.6v1.4"/>
+    </symbol>
+
+    <!-- Spanner: open jaw + ring end -->
+    <symbol id="i-tools" viewBox="0 0 24 24">
+      <path d="M7.4 3.6a4.4 4.4 0 0 0-1.8 7.2l9.6 9.6a2.4 2.4 0 0 0 3.4-3.4L9 7.4a4.4 4.4 0 0 0-1.6-3.8Z"/>
+      <path d="M5.6 5.4 8.4 8.2"/>
+      <circle cx="17.6" cy="6.4" r="3.2"/>
+    </symbol>
+
+    <!-- Key: blade + bit teeth -->
+    <symbol id="i-key" viewBox="0 0 24 24">
+      <circle cx="7.6" cy="7.6" r="4.2"/>
+      <path d="M10.6 10.6 20 20M17 17l-2 2M14.4 14.4l-1.8 1.8"/>
+    </symbol>
+
+    <!-- Shield check — verification, drawn tighter than stock -->
+    <symbol id="i-seal" viewBox="0 0 24 24">
+      <path d="M12 2.8 4.6 5.8v6.1c0 4.4 3.1 8.4 7.4 9.3 4.3-.9 7.4-4.9 7.4-9.3V5.8Z"/>
+      <path d="m8.6 12.2 2.4 2.4 4.6-4.9"/>
+    </symbol>
+
+    <!-- Gear hub — the pivot from the Revix mark. Teeth are a
+         dashed thick stroke: reads as a cog, costs one element. -->
+    <symbol id="i-gear" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="7.6" stroke-width="3" stroke-dasharray="2.4 2.5"/>
+      <circle cx="12" cy="12" r="4.8"/>
+    </symbol>
+
+    <!-- Revix mark — the tachometer, redrawn as vector so it scales
+         and can animate. Geometry follows assets/Revix_Logo_*.png -->
+    <symbol id="i-mark" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="20" stroke="var(--rule-2)" stroke-width="1.5"/>
+      <path d="M24 5.5a18.5 18.5 0 0 1 13.1 31.6" stroke="var(--crimson)" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M24 2.6v3.4M9.8 8.4l2.2 2.6M2.9 22.6h3.4M41.7 22.6h3.4" stroke="var(--rule-3)" stroke-width="1.6"/>
+      <path d="M24 24 13.4 12.6" stroke="var(--crimson)" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="24" cy="24" r="4.6" stroke="var(--crimson)" stroke-width="2.6" stroke-dasharray="1.6 1.7"/>
+      <circle cx="24" cy="24" r="1.9" fill="var(--crimson)" stroke="none"/>
+    </symbol>
+
+    <!-- Pin: location, with a bearing notch -->
+    <symbol id="i-pin" viewBox="0 0 24 24">
+      <path d="M12 21.4s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/>
+      <circle cx="12" cy="10.2" r="2.6"/>
+    </symbol>
+
+  </defs>
+</svg>
+
+<!-- ═══════════ NAV ═══════════ -->
+<header class="nav" id="nav">
+  <span class="nav__prog" id="prog" aria-hidden="true"></span>
+  <div class="bay nav__in">
+    <a class="mark" href="#top">
+      <img src="assets/Revix_Logo_Transparent.png" width="1800" height="450"
+           alt="Revix: mechanic marketplace" class="mark__img">
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#problem">Problem</a>
+      <a href="#how">How it works</a>
+      <a href="#trust">Trust</a>
+      <a href="#mechanics">Mechanics</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--fill btn--sm nav__cta" href="#waitlist">Join the waitlist</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ═══════════ 01 · HERO ═══════════ -->
+<section class="hero" id="top">
+
+  <!-- Parallax stack. Three depths, scroll-linked in script.js -->
+  <div class="px" aria-hidden="true">
+    <div class="px__grid" data-px="0.06"></div>
+
+    <!-- Technical elevation. Drawn, not stock art. -->
+    <svg class="px__car" data-px="0.16" viewBox="0 0 420 210" preserveAspectRatio="xMidYMax meet">
+      <g class="car__dim">
+        <path d="M28 190h364M28 186v8M392 186v8"/>
+      </g>
+      <g class="car__body">
+        <path d="M28 150v-18c0-10 6-16 18-19l50-9c12-20 30-30 56-32h98c26 2 42 12 56 32l66 12c14 3 20 10 20 20v14Z"/>
+        <path d="M110 102l20-18c8-5 16-7 26-7h44v25Z"/>
+        <path d="M208 77h38c16 1 26 7 36 19l6 8h-80Z"/>
+        <path d="M28 150h364"/>
+      </g>
+      <g class="car__wheel">
+        <circle cx="96" cy="150" r="27"/><circle cx="96" cy="150" r="13"/>
+        <circle cx="316" cy="150" r="27"/><circle cx="316" cy="150" r="13"/>
+      </g>
+      <g class="car__tick">
+        <path d="M96 110v-14M316 110v-14M90 96h12M310 96h12"/>
+      </g>
+    </svg>
+
+    <div class="px__wash" data-px="0.03"></div>
+  </div>
+
+  <div class="bay hero__in">
+    <div class="hero__lead">
+      <p class="tag reveal" data-r="1">Lagos<span class="tag__sep"></span>Launching soon</p>
+
+      <h1 class="hero__h reveal" data-r="2">
+        Never<br>stranded.<br>
+        <span class="hero__h--alt">Never<br>overcharged.</span>
+      </h1>
+
+      <p class="hero__sub reveal" data-r="3">
+        A verified mechanic comes to you for a breakdown or a routine service.
+        You see the price before you book, and that is the price you pay.
+      </p>
+
+      <div class="hero__cta reveal" data-r="4">
+        <a class="btn btn--fill btn--lg" href="#waitlist">Join the waitlist</a>
+        <a class="btn btn--line btn--lg" href="#how">How it works</a>
+      </div>
+
+      <div class="stores reveal" data-r="5">
+        <span class="stores__note">Apps arriving with launch</span>
+        <div class="stores__row">
+          <span class="store" aria-label="Coming soon on the App Store">
+            <svg class="store__g" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08ZM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25Z"/></svg>
+            <span class="store__t"><em>Coming soon on the</em>App Store</span>
+          </span>
+          <span class="store" aria-label="Coming soon on Google Play">
+            <svg class="store__g" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3.6 2.2a1.4 1.4 0 0 0-.6 1.15v17.3a1.4 1.4 0 0 0 .6 1.15l.1.05 9.6-9.7v-.2L3.7 2.15Z" opacity=".95"/>
+              <path d="m16.6 15.3-3.3-3.3v-.2l3.3-3.3.08.05 3.9 2.22c1.1.63 1.1 1.66 0 2.3l-3.9 2.2Z" opacity=".55"/>
+              <path d="m16.68 15.25-3.38-3.4L3.6 21.8a1.15 1.15 0 0 0 1.47.04Z" opacity=".8"/>
+              <path d="M16.68 8.75 5.07 2.16A1.15 1.15 0 0 0 3.6 2.2l9.7 9.65Z" opacity=".4"/>
+            </svg>
+            <span class="store__t"><em>Coming soon on</em>Google Play</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIGNATURE — the approach gauge -->
+    <figure class="gauge reveal" data-r="3">
+      <figcaption class="sr-only" id="gaugeCap">Example job in progress. Chidi Okeke, verified mechanic, rated 4.9, arriving in about 8 minutes.</figcaption>
+
+      <div class="gauge__head">
+        <span class="gauge__ref">RVX·8F2K9</span>
+        <span class="gauge__state" id="state">On the way</span>
+      </div>
+
+      <div class="gauge__who">
+        <span class="who">
+          <span class="who__i" aria-hidden="true">CO</span>
+          <span class="who__id">
+            <b>Chidi Okeke</b>
+            <span class="who__seal" aria-label="Identity verified"><svg aria-hidden="true"><use href="#i-seal"/></svg>Verified</span>
+          </span>
+        </span>
+
+        <div class="gauge__dial">
+          <svg class="dial" viewBox="0 0 240 240" aria-labelledby="gaugeCap" role="img">
+            <defs>
+              <linearGradient id="sweep" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#D97706"/></linearGradient>
+              <linearGradient id="sweepDone" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#16A34A"/><stop offset="100%" stop-color="#15803D"/></linearGradient>
+            </defs>
+            <g id="ticks" class="dial__ticks"></g>
+            <circle class="dial__track" cx="120" cy="120" r="88"/>
+            <circle class="dial__sweep" id="sweep-arc" cx="120" cy="120" r="88"/>
+
+            <!-- Needle + gear pivot, lifted from the Revix mark. The needle
+                 is crimson because it is the brand device; the arc carries
+                 the status colour. See design.md §11.9. -->
+            <g class="dial__needle" id="needle">
+              <path d="M120 62 118.4 40h3.2Z"/>
+              <circle cx="120" cy="120" r="0"/>
+            </g>
+            <g class="dial__hub" aria-hidden="true">
+              <circle cx="120" cy="176" r="7" stroke-dasharray="2.2 2.4"/>
+              <circle cx="120" cy="176" r="3.4"/>
+            </g>
+            <circle class="dial__head" id="sweep-head" cx="120" cy="32" r="4"/>
+
+            <text class="dial__ann" x="188" y="206">0</text>
+            <text class="dial__ann dial__ann--max" x="52" y="206">MAX</text>
+          </svg>
+          <div class="dial__read">
+            <span class="dial__eta num" id="eta">8</span>
+            <span class="dial__unit">min away</span>
+          </div>
+          </div>
+      </div>
+
+      <dl class="who__stats">
+        <div><dd class="num">4.9</dd><dt>Rating</dt></div>
+        <div><dd class="num">41</dd><dt>Jobs done</dt></div>
+        <div><dd class="num">2.1<span>km</span></dd><dt>Away</dt></div>
+      </dl>
+
+      <ol class="mini" id="track">
+        <li data-s="0">Assigned</li><li data-s="1">Moving</li><li data-s="2">Nearby</li><li data-s="3">Arrived</li>
+      </ol>
+    </figure>
+  </div>
+
+  <div class="bay">
+    <dl class="spec reveal" data-r="6">
+      <div class="spec__i"><dt>Coverage</dt><dd>All of Lagos</dd></div>
+      <div class="spec__i"><dt>Identity</dt><dd>NIN + BVN checked</dd></div>
+      <div class="spec__i"><dt>Pricing</dt><dd>Fixed, before booking</dd></div>
+      <div class="spec__i"><dt>Payout</dt><dd>Same day</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ═══════════ SERVICE TICKER ═══════════ -->
+<section class="tick" aria-label="Services available">
+  <div class="tick__row" id="ticker">
+    <ul class="tick__set">
+      <li><svg><use href="#i-oil"/></svg>Oil &amp; filter change</li>
+      <li><svg><use href="#i-brake"/></svg>Brake pads</li>
+      <li><svg><use href="#i-tyre"/></svg>Flat tyre</li>
+      <li><svg><use href="#i-battery"/></svg>Battery</li>
+      <li><svg><use href="#i-jump"/></svg>Jump start</li>
+      <li><svg><use href="#i-ac"/></svg>AC regas</li>
+      <li><svg><use href="#i-heat"/></svg>Overheating</li>
+      <li><svg><use href="#i-engine"/></svg>Won't start</li>
+      <li><svg><use href="#i-diag"/></svg>Diagnostic scan</li>
+      <li><svg><use href="#i-fuel"/></svg>Fuel delivery</li>
+      <li><svg><use href="#i-key"/></svg>Lockout</li>
+      <li><svg><use href="#i-tools"/></svg>Full service</li>
+      <li><svg><use href="#i-gear"/></svg>Routine servicing</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════ 02 · PROBLEM ═══════════ -->
+<section class="sect problem" id="problem">
+  <div class="bay rail">
+    <header class="rail__h reveal">
+      <p class="tag tag--plain">The way it works today</p>
+      <h2 class="h2">Your car stops. Then the guessing starts.</h2>
+      <p class="rail__lead">Three things go wrong at once, and every one of them costs you money.</p>
+    </header>
+
+    <div>
+      <ol class="stack">
+      <li class="row reveal">
+        <span class="tile"><span class="tile__i"><svg><use href="#i-pin"/></svg></span></span>
+        <div class="row__b">
+          <h3>No help within reach</h3>
+          <p>The car gives out where you are, not where it's convenient. In an unfamiliar road, with light fading, there's no trusted mechanic nearby and no quick way to reach one.</p>
+        </div>
+      </li>
+      <li class="row reveal">
+        <span class="tile"><span class="tile__i"><svg><use href="#i-diag"/></svg></span></span>
+        <div class="row__b">
+          <h3>You don't know what it should cost</h3>
+          <p>The price arrives after the work does. There's nothing to compare it against, and by then the car is already apart.</p>
+        </div>
+      </li>
+      <li class="row reveal">
+        <span class="tile"><span class="tile__i"><svg><use href="#i-seal"/></svg></span></span>
+        <div class="row__b">
+          <h3>No verification, no recourse</h3>
+          <p>Nobody has verified who this person is, and if the repair fails next week, there's nowhere to go back to.</p>
+        </div>
+      </li>
+      </ol>
+
+      <p class="pull reveal">It lands hardest on the people with the least room to argue: first-time car owners, newcomers, anyone caught out far from home.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true">
+  <span class="divider__seal"><svg viewBox="0 0 48 48"><use href="#i-mark"/></svg></span>
+</div>
+
+<!-- ═══════════ 03 · HOW IT WORKS — light chapter opens ═══════════ -->
+<section class="sect how" id="how">
+  <header class="bay how__h">
+    <p class="tag tag--plain tag--crimson">How Revix works</p>
+    <h2 class="h2 h2--dark h2--wide">Three steps, start to finish.</h2>
+  </header>
+
+  <!-- Checkerboard. Text panels light, instrument panels charcoal,
+       alternating on BOTH axes — col 1 runs L·D·L and col 2 runs
+       D·L·D, so every edge in the grid is already a tonal edge and
+       the section needs no border anywhere.
+
+       DOM order is text-then-graphic on every row; the desktop
+       crossover is explicit grid placement, not `order`. That is
+       load-bearing: with the desktop DOM order the mobile stack
+       would run L·D·D·L·L·D and two charcoal panels would merge
+       into one tall black block.
+
+       The graphics are drawn mechanisms, not photographs. This page
+       ships zero raster imagery on purpose — data cost is a
+       first-class constraint (IMAGES.md §0, design.md §7).
+
+       ⚠️  NO NAIRA FIGURE APPEARS IN THESE DRAWINGS. Price bands are
+       blocked until David signs them (pricing.md P-2, task.md B-2),
+       and a number in an SVG is still a public promise. The amount
+       resolves as redacted digit blocks: the shape of a price, with
+       no price in it. Do not "finish" these into real figures. -->
+  <div class="cb">
+
+    <!-- ── ROW 1 · text left, instrument right ─────────────────── -->
+    <div class="cb__p cb__t cb__t--l">
+      <span class="cb__n">01</span>
+      <h3 class="cb__h"><span class="sr-only">Step 1. </span>Tell us what's wrong</h3>
+      <p class="cb__b">Pick from a list: flat tyre, won't start, brakes, AC, or a routine service. Or just describe it in your own words. We show you the price for your car before you book anything.</p>
+      <a class="cb__more" href="#faq" aria-label="More detail on what a job costs">More detail<span aria-hidden="true">+</span></a>
+    </div>
+
+    <div class="cb__p cb__g">
+      <!-- INSTRUMENT 1 · the service picker. Eight services on the
+           ticker's own vocabulary, one selects under a registration
+           mark, and the price resolves beneath it as redacted blocks. -->
+      <svg class="ins" viewBox="0 0 360 300" aria-hidden="true" focusable="false">
+        <g class="ins__grid"><path d="M0 60h360M0 120h360M0 180h360M0 240h360M72 0v300M144 0v300M216 0v300M288 0v300"/></g>
+        <text class="ins__lbl ins__f ins__f--1" x="28" y="30">WHAT'S WRONG?</text>
+
+        <g class="ins__tile ins__tile--on ins__f ins__f--1" style="--d:0"><rect x="44"  y="52"  width="56" height="56"/><use href="#i-tyre"    x="60"  y="68"  width="24" height="24"/></g>
+        <g class="ins__tile ins__f ins__f--1" style="--d:1"><rect x="116" y="52"  width="56" height="56"/><use href="#i-engine"  x="132" y="68"  width="24" height="24"/></g>
+        <g class="ins__tile ins__f ins__f--1" style="--d:2"><rect x="188" y="52"  width="56" height="56"/><use href="#i-brake"   x="204" y="68"  width="24" height="24"/></g>
+        <g class="ins__tile ins__f ins__f--1" style="--d:3"><rect x="260" y="52"  width="56" height="56"/><use href="#i-ac"      x="276" y="68"  width="24" height="24"/></g>
+        <g class="ins__tile ins__f ins__f--1" style="--d:4"><rect x="44"  y="124" width="56" height="56"/><use href="#i-battery" x="60"  y="140" width="24" height="24"/></g>
+        <g class="ins__tile ins__f ins__f--1" style="--d:5"><rect x="116" y="124" width="56" height="56"/><use href="#i-oil"     x="132" y="140" width="24" height="24"/></g>
+        <g class="ins__tile ins__f ins__f--1" style="--d:6"><rect x="188" y="124" width="56" height="56"/><use href="#i-heat"    x="204" y="140" width="24" height="24"/></g>
+        <g class="ins__tile ins__f ins__f--1" style="--d:7"><rect x="260" y="124" width="56" height="56"/><use href="#i-tools"   x="276" y="140" width="24" height="24"/></g>
+
+        <!-- Registration mark — the corner brackets from .card::before,
+             drawn in stroke. Eight 14-unit arms, one subpath each, so
+             each draws outward from its own corner. -->
+        <path class="ins__reg ins__d ins__d--2" style="--len:14"
+              d="M38 46v14M38 46h14M106 46v14M106 46h-14M106 114v-14M106 114h-14M38 114v-14M38 114h14"/>
+
+        <path class="ins__rule ins__d ins__d--3" style="--len:304" d="M28 216H332"/>
+        <text class="ins__lbl ins__f ins__f--3" x="28" y="248">PRICE FOR YOUR CAR</text>
+        <g>
+          <text class="ins__ngn ins__f ins__f--3" x="228" y="250" text-anchor="end">NGN</text>
+          <rect class="ins__blk ins__f ins__f--3" style="--d:1" x="240" y="230" width="14" height="24"/>
+          <rect class="ins__blk ins__f ins__f--3" style="--d:2" x="258" y="230" width="14" height="24"/>
+          <text class="ins__ngn ins__f ins__f--3" style="--d:3" x="277" y="250" text-anchor="middle">,</text>
+          <rect class="ins__blk ins__f ins__f--3" style="--d:4" x="282" y="230" width="14" height="24"/>
+          <rect class="ins__blk ins__f ins__f--3" style="--d:5" x="300" y="230" width="14" height="24"/>
+          <rect class="ins__blk ins__f ins__f--3" style="--d:6" x="318" y="230" width="14" height="24"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- ── ROW 2 · text crosses right at ≥900px. DOM order stays
+             text-first so the mobile stack keeps alternating. ───── -->
+    <div class="cb__p cb__t cb__t--r">
+      <span class="cb__n">02</span>
+      <h3 class="cb__h"><span class="sr-only">Step 2. </span>You choose your mechanic</h3>
+      <p class="cb__b">You pick from verified mechanics nearby. Compare on rating, distance, and price, and see when each can reach you. Every identity is checked against national records, not a photo someone glanced at.</p>
+      <a class="cb__more" href="#trust" aria-label="More detail on how mechanics are verified">More detail<span aria-hidden="true">+</span></a>
+    </div>
+
+    <div class="cb__p cb__g">
+      <!-- INSTRUMENT 2 · the comparison. Three real trade-offs — the
+           best rated is furthest, the nearest is lowest rated — so the
+           choice is a genuine judgement rather than an obvious winner.
+           Row 2 is Chidi Okeke at 4.9 and 2.1 km: the same mechanic and
+           the same figures as the hero gauge, seen from the other end. -->
+      <svg class="ins" viewBox="0 0 360 300" aria-hidden="true" focusable="false">
+        <g class="ins__grid"><path d="M0 60h360M0 120h360M0 180h360M0 240h360M72 0v300M144 0v300M216 0v300M288 0v300"/></g>
+        <text class="ins__lbl ins__f ins__f--1" x="28" y="30">MECHANICS NEARBY</text>
+
+        <g class="ins__f ins__f--1">
+          <text class="ins__col" x="166" y="52">RATING</text>
+          <text class="ins__col" x="220" y="52">DIST</text>
+          <text class="ins__col" x="272" y="52">ETA</text>
+        </g>
+
+        <g class="ins__row ins__f ins__f--1" style="--d:0">
+          <rect x="28" y="62" width="304" height="52"/>
+          <text x="44" y="93">AMAKA E.</text>
+          <text x="166" y="93" text-anchor="middle">5.0</text>
+          <text x="220" y="93" text-anchor="middle">5.2 KM</text>
+          <text x="272" y="93" text-anchor="middle">26 MIN</text>
+        </g>
+
+        <g class="ins__row ins__row--on ins__f ins__f--1" style="--d:1">
+          <rect x="28" y="124" width="304" height="52"/>
+          <text x="44" y="155">CHIDI O.</text>
+          <text x="166" y="155" text-anchor="middle">4.9</text>
+          <text x="220" y="155" text-anchor="middle">2.1 KM</text>
+          <text x="272" y="155" text-anchor="middle">8 MIN</text>
+        </g>
+
+        <g class="ins__row ins__f ins__f--1" style="--d:2">
+          <rect x="28" y="186" width="304" height="52"/>
+          <text x="44" y="217">TUNDE B.</text>
+          <text x="166" y="217" text-anchor="middle">4.6</text>
+          <text x="220" y="217" text-anchor="middle">1.4 KM</text>
+          <text x="272" y="217" text-anchor="middle">6 MIN</text>
+        </g>
+
+        <rect class="ins__bar" x="28" y="124" width="2" height="52"/>
+
+        <!-- #i-seal inlined rather than <use>d: a <use> can carry only
+             one stroke-dasharray, so shield and tick would draw at
+             wildly different rates. Two paths, two lengths. -->
+        <g class="ins__seal" transform="translate(300 138)">
+          <path class="ins__d ins__d--3" style="--len:56" d="M12 2.8 4.6 5.8v6.1c0 4.4 3.1 8.4 7.4 9.3 4.3-.9 7.4-4.9 7.4-9.3V5.8Z"/>
+          <path class="ins__d ins__d--3" style="--len:11;--d:6" d="m8.6 12.2 2.4 2.4 4.6-4.9"/>
+        </g>
+
+        <text class="ins__lbl ins__f ins__f--3" x="28" y="266">IDENTITY CHECKED AGAINST NATIONAL RECORDS</text>
+      </svg>
+    </div>
+
+    <!-- ── ROW 3 · text left, instrument right ─────────────────── -->
+    <div class="cb__p cb__t cb__t--l">
+      <span class="cb__n">03</span>
+      <h3 class="cb__h"><span class="sr-only">Step 3. </span>Pay once the job is done</h3>
+      <p class="cb__b">Your payment is held until you confirm the work is finished. Raise a problem and it stays held while we resolve it.</p>
+      <a class="cb__more" href="#faq" aria-label="More detail on how payment is held">More detail<span aria-hidden="true">+</span></a>
+    </div>
+
+    <div class="cb__p cb__g">
+      <!-- INSTRUMENT 3 · held, then released. The three-segment rail is
+           the hero gauge's .mini device redrawn in SVG, so the page's
+           two status instruments speak the same language. Amber in
+           flight, green when done — never crimson: crimson is action
+           and brand, status is green and amber (design.md §3.1). -->
+      <svg class="ins" viewBox="0 0 360 300" aria-hidden="true" focusable="false">
+        <g class="ins__grid"><path d="M0 60h360M0 120h360M0 180h360M0 240h360M72 0v300M144 0v300M216 0v300M288 0v300"/></g>
+        <text class="ins__lbl ins__f ins__f--1" x="28" y="30">PAYMENT</text>
+
+        <rect class="ins__box ins__d ins__d--1" style="--len:860" x="28" y="48" width="304" height="124"/>
+
+        <text class="ins__st ins__st--a ins__f ins__f--1" x="48" y="80">HELD UNTIL YOU CONFIRM</text>
+        <text class="ins__st ins__st--b" x="48" y="80">RELEASED TO MECHANIC</text>
+
+        <g>
+          <text class="ins__ngn ins__f ins__f--1" style="--d:1" x="76" y="146" text-anchor="end">NGN</text>
+          <rect class="ins__amt ins__f ins__f--1" style="--d:2" x="84"  y="122" width="18" height="30"/>
+          <rect class="ins__amt ins__f ins__f--1" style="--d:3" x="106" y="122" width="18" height="30"/>
+          <text class="ins__ngn ins__f ins__f--1" style="--d:4" x="129" y="146" text-anchor="middle">,</text>
+          <rect class="ins__amt ins__f ins__f--1" style="--d:5" x="134" y="122" width="18" height="30"/>
+          <rect class="ins__amt ins__f ins__f--1" style="--d:6" x="156" y="122" width="18" height="30"/>
+          <rect class="ins__amt ins__f ins__f--1" style="--d:7" x="178" y="122" width="18" height="30"/>
+        </g>
+
+        <path class="ins__check ins__d ins__d--2" style="--len:70" d="M240 122l16 16 30-34"/>
+
+        <g class="ins__f ins__f--1" style="--d:3">
+          <rect class="ins__seg ins__seg--1" x="28"  y="204" width="96" height="2"/>
+          <rect class="ins__seg ins__seg--2" x="132" y="204" width="96" height="2"/>
+          <rect class="ins__seg ins__seg--3" x="236" y="204" width="96" height="2"/>
+          <text class="ins__step ins__step--1" x="28"  y="226">HELD</text>
+          <text class="ins__step ins__step--2" x="132" y="226">CONFIRMED</text>
+          <text class="ins__step ins__step--3" x="236" y="226">RELEASED</text>
+        </g>
+
+        <text class="ins__lbl ins__f ins__f--3" x="28" y="266">RAISE A PROBLEM AND IT STAYS HELD</text>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ 04 · TRUST — the quiet apex. No motion here. ═══════════ -->
+<section class="sect trust" id="trust">
+  <div class="bay rail">
+    <header class="rail__h">
+      <p class="tag tag--plain tag--crimson">Trust &amp; safety</p>
+      <h2 class="h2 h2--dark">The part we slow down for.</h2>
+      <p class="rail__lead">Everything else is built to be quick. This is built to be right: the amount, who's coming, and one clear action.</p>
+    </header>
+
+    <div>
+      <ul class="cards cards--2">
+        <li class="card">
+          <span class="card__i"><svg><use href="#i-seal"/></svg></span>
+          <h3>Every mechanic is verified</h3>
+          <p>We check every mechanic's identity against national records before they take a job, and confirm the payout account is really theirs. No anonymous strangers.</p>
+        </li>
+        <li class="card">
+          <span class="card__i"><svg><use href="#i-diag"/></svg></span>
+          <h3>The price is fixed before you book</h3>
+          <p>You see what the job costs upfront. No roadside guessing. If the job turns out bigger, the extra needs your approval before any more work starts.</p>
+        </li>
+        <li class="card">
+          <span class="card__i"><svg><use href="#i-battery"/></svg></span>
+          <h3>Payment is held until you're done</h3>
+          <p>The mechanic only gets paid once you confirm the work is finished. If something's wrong, the money stays put until we sort it out.</p>
+        </li>
+        <li class="card">
+          <span class="card__i"><svg><use href="#i-tools"/></svg></span>
+          <h3>No hidden charges</h3>
+          <p>Labour and parts show as separate lines, so you see what each part really costs. Hiding a marked-up part inside one lump sum is how car owners get overcharged. We don't.</p>
+        </li>
+      </ul>
+      <p class="trust__foot">After every job, you and the mechanic rate each other. Both of you carry an SOS button, too.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true">
+  <span class="divider__seal"><svg viewBox="0 0 48 48"><use href="#i-mark"/></svg></span>
+</div>
+
+<!-- ═══════════ 05 · MECHANICS ═══════════ -->
+<section class="sect mechs" id="mechanics">
+  <div class="bay rail">
+    <header class="rail__h reveal">
+      <p class="tag tag--plain">For mechanics</p>
+      <h2 class="h2">Grow your business with Revix.</h2>
+      <p class="rail__lead">Jobs come to your phone with the pay shown before you accept. No negotiating, no chasing customers for cash.</p>
+      <a class="btn btn--fill mechs__cta" href="#waitlist" data-pre="mechanic">Sign up as a mechanic</a>
+    </header>
+
+    <dl class="offer reveal">
+      <div class="offer__i"><dt><span class="offer__k"><svg><use href="#i-diag"/></svg></span>Pay shown upfront</dt><dd>You know what the job earns before you accept it.</dd></div>
+      <div class="offer__i"><dt><span class="offer__k"><svg><use href="#i-battery"/></svg></span>Same-day payout</dt><dd>Straight to your bank. No waiting on the customer to find cash.</dd></div>
+      <div class="offer__i"><dt><span class="offer__k"><svg><use href="#i-pin"/></svg></span>Wasted trips covered</dt><dd>If nobody's there when you arrive, you're compensated for the run.</dd></div>
+      <div class="offer__i"><dt><span class="offer__k"><svg><use href="#i-gear"/></svg></span>Your hours, your area</dt><dd>Go online when you want. Decline anything you like, no penalty.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ═══════════ 06 · COVERAGE ═══════════ -->
+<section class="sect cover" id="coverage">
+  <div class="bay rail">
+    <header class="rail__h reveal">
+      <p class="tag tag--plain">Coverage</p>
+      <h2 class="h2">Lagos first. Properly.</h2>
+      <p class="rail__lead">The whole city, mainland to island. Done properly, then we expand.</p>
+    </header>
+
+    <div>
+      <ol class="cities">
+        <li class="city city--live reveal"><span class="city__n">All of Lagos</span><span class="city__d">Mainland to island</span><span class="city__s">First</span></li>
+        <li class="city reveal"><span class="city__n">Port Harcourt</span><span class="city__d">After Lagos proves out</span><span class="city__s">Next</span></li>
+        <li class="city reveal"><span class="city__n">Abuja</span><span class="city__d">After Lagos proves out</span><span class="city__s">Next</span></li>
+      </ol>
+
+      <figure class="plot reveal" aria-label="Map of Lagos, mainland and island, the Revix service area">
+        <svg viewBox="0 0 400 320" class="plot__svg">
+          <g class="plot__grid"><path d="M0 40h400M0 100h400M0 160h400M0 220h400M0 280h400M60 0v320M140 0v320M220 0v320M300 0v320"/></g>
+
+          <!-- Lagos, schematically: mainland above, lagoon across the
+               middle, island and peninsula below, Atlantic at the foot.
+               Not to scale — legible beats accurate at 400 units wide.
+               The service area is the two landmasses themselves, dashed
+               in crimson: the whole city, not a corridor along one road. -->
+          <path class="plot__water" d="M16 124c68 12 132 2 184 0s116 8 184-4v50c-68 12-132 2-184 4s-116 10-184-2Z"/>
+          <path class="plot__water" d="M16 270c68 12 132 2 184 0s116 8 184-4v38H16Z"/>
+
+          <path class="plot__land" d="M16 16H384v106c-68 12-132 2-184 4s-116 10-184-2Z"/>
+          <path class="plot__land" d="M16 174c68 12 132 2 184 0s116 8 184-4v96c-68 12-132 2-184 4s-116 10-184-2Z"/>
+
+          <path class="plot__road" d="M144 110c-10 34-42 66-84 96"/>
+          <path class="plot__road" d="M36 220c74-14 144-20 224-16 40 2 76 8 106 14"/>
+
+          <path class="plot__zone" d="M16 16H384v106c-68 12-132 2-184 4s-116 10-184-2Z"/>
+          <path class="plot__zone" d="M16 174c68 12 132 2 184 0s116 8 184-4v96c-68 12-132 2-184 4s-116 10-184-2Z"/>
+
+          <g class="plot__nodes">
+            <g class="node"><circle cx="66" cy="58" r="5"/><text x="66" y="42">IKEJA</text></g>
+            <g class="node"><circle cx="176" cy="44" r="5"/><text x="176" y="28">MARYLAND</text></g>
+            <g class="node"><circle cx="252" cy="74" r="5"/><text x="252" y="58">SURULERE</text></g>
+            <g class="node"><circle cx="140" cy="102" r="5"/><text x="140" y="86">YABA</text></g>
+            <g class="node"><circle cx="56" cy="214" r="5"/><text x="56" y="200">IKOYI</text></g>
+            <g class="node"><circle cx="128" cy="210" r="5"/><text x="128" y="196">V.I.</text></g>
+            <g class="node"><circle cx="232" cy="206" r="5"/><text x="232" y="192">LEKKI</text></g>
+            <g class="node"><circle cx="330" cy="214" r="5"/><text x="330" y="200">AJAH</text></g>
+          </g>
+
+          <g class="plot__lbl">
+            <text x="24" y="112">MAINLAND</text>
+            <text x="24" y="300">ATLANTIC</text>
+            <text x="200" y="154">LAGOS LAGOON</text>
+          </g>
+        </svg>
+        <figcaption class="plot__cap"><span>Service area</span><span class="num">ALL LAGOS</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 07 · FAQ ═══════════ -->
+<section class="sect faq" id="faq">
+  <div class="bay rail rail--flip">
+    <header class="rail__h reveal">
+      <p class="tag tag--plain">Questions</p>
+      <h2 class="h2">FAQs</h2>
+      <p class="rail__lead">Something not covered here? Write to <a href="mailto:hello@revix.ng">hello@revix.ng</a> and a person will answer.</p>
+    </header>
+
+    <div class="qs reveal">
+      <details class="q" name="faq">
+        <summary><span class="q__k">01</span>How much does a job cost?<span class="q__m" aria-hidden="true"></span></summary>
+        <div class="q__a"><p>You always see the price before you book, never after. When you describe the problem, our system suggests a fair price for your specific car, and verified mechanics nearby respond with their own offers. You compare them on price, rating and distance, and pick the one that works for you. Nobody springs a number on you at the roadside, and nothing changes once the car's apart.</p></div>
+      </details>
+
+      <details class="q" name="faq">
+        <summary><span class="q__k">02</span>What if the job turns out to be bigger?<span class="q__m" aria-hidden="true"></span></summary>
+        <div class="q__a"><p>The mechanic sends you a revised total with an explanation and a photo. Nothing extra happens until you approve it. If you'd rather not, they finish the job you booked and that's what you pay for.</p></div>
+      </details>
+
+      <details class="q" name="faq">
+        <summary><span class="q__k">03</span>Who pays for parts?<span class="q__m" aria-hidden="true"></span></summary>
+        <div class="q__a"><p>You do, and you see exactly what they cost. Labour and parts appear as separate lines, at the vendor's own price. A marked-up part hidden inside one total is the most common way car owners get overcharged here, so we don't hide it.</p></div>
+      </details>
+
+      <details class="q" name="faq">
+        <summary><span class="q__k">04</span>How do you verify a mechanic?<span class="q__m" aria-hidden="true"></span></summary>
+        <div class="q__a"><p>Before a mechanic can take a single job, we check their NIN and BVN against national records, and confirm the bank account they're paid into is really theirs. Then one of our agents visits their workshop in person to verify it. Anyone can upload a photo of an ID; we go and confirm the real thing.</p></div>
+      </details>
+
+      <details class="q" name="faq">
+        <summary><span class="q__k">05</span>What if I'm not happy with the work?<span class="q__m" aria-hidden="true"></span></summary>
+        <div class="q__a"><p>Raise a problem in the app and your payment stops where it is; the mechanic isn't paid while it's open. A person reads what happened, looks at the photos and messages from the job, and decides. Not a form, and not an automated reply.</p></div>
+      </details>
+
+      <details class="q" name="faq">
+        <summary><span class="q__k">06</span>When can I actually use it?<span class="q__m" aria-hidden="true"></span></summary>
+        <div class="q__a"><p>We're starting with the whole of Lagos, mainland to island, with a network of mechanics we've verified ourselves. Port Harcourt and Abuja follow once Lagos is running properly. Join the waitlist and we'll message you the moment it opens near you.</p></div>
+      </details>
+
+      <details class="q" name="faq">
+        <summary><span class="q__k">07</span>I'm a mechanic. How do I get paid?<span class="q__m" aria-hidden="true"></span></summary>
+        <div class="q__a"><p>Straight into your bank account once the job is confirmed complete, usually the same day. The customer's payment is secured up front, before you start, so it's locked in and waiting for you; completing the job releases it. You see exactly what a job pays before you accept it, and if you drive out and nobody's there, you're still paid for the trip.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 08 · WAITLIST ═══════════ -->
+<section class="sect join" id="waitlist">
+  <div class="bay rail">
+    <div class="rail__h reveal">
+      <h2 class="h2">Be first<br>to use it.</h2>
+      <p class="join__p">We'll message you when Revix opens in your area. Nothing else.</p>
+    </div>
+
+    <div class="reveal">
+      <form class="form" id="waitlistForm" novalidate>
+        <fieldset class="seg">
+          <legend class="sr-only">I am joining as</legend>
+          <label class="seg__o"><input type="radio" name="side" value="customer" checked><span>I own a car</span></label>
+          <label class="seg__o"><input type="radio" name="side" value="mechanic"><span>I'm a mechanic</span></label>
+        </fieldset>
+
+        <div class="f">
+          <label class="f__l" for="phone">Phone number</label>
+          <input class="f__i" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0801 234 5678" aria-describedby="phoneErr" required>
+          <p class="f__e" id="phoneErr" role="alert" hidden></p>
+        </div>
+
+        <div class="f">
+          <label class="f__l" for="area">Area <em>optional</em></label>
+          <input class="f__i" id="area" name="area" type="text" autocomplete="address-level2" placeholder="Lekki Phase 1">
+        </div>
+
+        <button class="btn btn--fill btn--lg btn--wide" type="submit" id="submitBtn">Join the waitlist</button>
+        <p class="f__legal">We'll only use your number to tell you when Revix launches near you. <a href="#">Privacy policy</a>.</p>
+      </form>
+
+      <div class="ok" id="done" hidden role="status" tabindex="-1">
+        <svg class="ok__t" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4 10-10"/></svg>
+        <h3>You're on the waitlist.</h3>
+        <p id="doneMsg">We'll message you the moment Revix opens near you.</p>
+        <button class="btn btn--line btn--sm" type="button" id="againBtn">Add another number</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="foot">
+  <div class="bay foot__in">
+    <div>
+      <a class="mark mark--f" href="#top">
+        <img src="assets/Revix_Logo_Transparent.png" width="1800" height="450"
+             alt="Revix: mechanic marketplace" class="mark__img">
+      </a>
+      <p class="foot__t">Connecting car owners to trusted mechanics across Nigeria.</p>
+    </div>
+    <nav class="foot__c" aria-label="Footer">
+      <div><h4>Product</h4><a href="#how">How it works</a><a href="#trust">Trust &amp; safety</a><a href="#coverage">Coverage</a></div>
+      <div><h4>Mechanics</h4><a href="#mechanics">Work with Revix</a><a href="mailto:mechanics@revix.ng">Become an agent</a></div>
+      <div><h4>Company</h4><a href="#faq">FAQ</a><a href="mailto:hello@revix.ng">Contact</a><a href="#">Privacy policy</a><a href="#">Terms</a></div>
+    </nav>
+  </div>
+  <div class="bay foot__b">
+    <p>© 2026 Revix Technologies Ltd · Lagos, Nigeria</p>
+    <div class="soc">
+      <a href="#" aria-label="Revix on Instagram"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><path d="M17.2 6.8h.01"/></svg></a>
+      <a href="#" aria-label="Revix on X"><svg viewBox="0 0 24 24"><path d="M4 4h3.2l5 6.7L17.6 4H20l-6.6 7.9L20.4 20H17l-5.3-7-5.5 7H4l7-8.4L4 4Z" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" aria-label="Revix on LinkedIn"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M7.5 10.5v6.5M7.5 7.4v.02M11.5 17v-3.9a2.2 2.2 0 0 1 4.4 0V17"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
